@@ -1,0 +1,115 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Proyecto_Metodo_Burbuja
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+
+
+            Nombres.Items.Add(txtNombre.Text);
+            txtNombre.Text = "";
+            txtNombre.Focus();
+
+
+
+
+        }
+
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+
+            Temp1.Items.Clear();
+
+            for (int i = 0; i <Nombres.Items.Count; i++)
+            {
+                Nombres.SelectedIndex = i;
+                Temp1.Items.Add(Nombres.SelectedItem.ToString()); 
+
+
+
+            }
+
+
+            while (Temp1.Items.Count > 0)
+            {
+
+                Temp1.SelectedIndex = 0;
+                string mas_bajo = Temp1.SelectedItem.ToString();
+                for (int i = 0; i < Temp1.Items.Count; i++)
+
+                {
+
+                    Temp1.SelectedIndex = i;
+                    string nombre = Temp1.SelectedItem.ToString();
+                    if(string.Compare(mas_bajo, nombre) > 0)
+
+                    {
+                        mas_bajo = nombre;
+                    }
+
+                }
+
+                //MessageBox.Show(" El mas bajo " + mas_bajo);
+                Temp2.Items.Clear();
+                for ( int i = 0; i < Temp1.Items.Count; i++)
+                {
+                    Temp1.SelectedIndex = i;
+                    string nombre = Temp1.SelectedItem.ToString();
+                    if (nombre == mas_bajo)
+                    {
+                        Resultado.Items.Add(nombre);
+                    }
+
+                    else
+                    {
+                        Temp2.Items.Add(nombre);
+
+                    }
+
+                }
+
+
+                Temp1.Items.Clear();
+                for ( int i = 0; i < Temp2.Items.Count; i++)
+                {
+                    Temp2.SelectedIndex = i;
+                    Temp1.Items.Add(Temp2.SelectedItem.ToString());
+
+                }
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+    }
+}
